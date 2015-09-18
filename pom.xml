@@ -1,0 +1,60 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.deliver8r</groupId>
+		<artifactId>deliver8r-parent</artifactId>
+		<version>0.0.7</version>
+	</parent>
+	<artifactId>uid-datasink</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+	<name>UID Datasink</name>
+	<description>Describe me</description>
+	<!-- URL for site gen -->
+	<url>${ghe.url.base}/${project.artifactId}</url>
+	<scm>
+		<connection>scm:git:${git.url}</connection>
+		<url>scm:git:${git.url}</url>
+		<developerConnection>scm:git:${git.url}</developerConnection>
+	</scm>
+	<distributionManagement>
+		<site>
+			<id>githubd8r</id>
+			<name>GitHub Pages</name>
+			<url>github:http://${team.group.id}.github.io/${project.artifactId}/site/${project.version}/</url>
+		</site>
+	</distributionManagement>
+	<dependencyManagement>
+		<dependencies>
+		</dependencies>
+	</dependencyManagement>
+	<dependencies>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.plexus</groupId>
+			<artifactId>plexus-utils</artifactId>
+		</dependency>
+	</dependencies>
+	<build>
+		<plugins>
+		</plugins>
+	</build>
+</project>

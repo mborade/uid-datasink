@@ -1,0 +1,3 @@
+# Model Resolution
+
+So you've got a model that's loaded.  How do you resolve it to a graph that can be instanitated?  This is the code for that.

@@ -1,0 +1,2 @@
+This is is some data about this project (${project.groupId}:${project.artifactId}:${project.version})
+
