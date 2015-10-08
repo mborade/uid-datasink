@@ -1,17 +1,25 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>com.deliver8r</groupId>
-		<artifactId>deliver8r-parent</artifactId>
-		<version>0.0.7</version>
-	</parent>
-	<artifactId>uid-datasink</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
-	<name>UID Datasink</name>
-	<description>Describe me</description>
-	<!-- URL for site gen -->
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+	<groupId>com.deliver8R</groupId>
+    <artifactId>uiddatasink-service</artifactId>
+    <packaging>bundle</packaging>
+    <version>0.0.1</version>
+    <name>UID Datasink web service</name>
+    <description>UID Datasink web service</description>
+	
+	 <properties>
+        <cxf.version>3.0.4</cxf.version>
+        <jaxb.api.version>2.2</jaxb.api.version>
+        <karaf.version>3.0.4</karaf.version>
+        <slf4j.version>1.7.12</slf4j.version>
+        <xerces.version>2.11.0</xerces.version>
+        <cxf.codegen-plugin.version>3.0.4</cxf.codegen-plugin.version>
+        <exec-maven-plugin.version>1.3.2</exec-maven-plugin.version>
+    </properties>
+    
+    <!-- URL for site gen -->
 	<url>${ghe.url.base}/${project.artifactId}</url>
 	<scm>
 		<connection>scm:git:${git.url}</connection>
@@ -25,36 +33,132 @@
 			<url>github:http://${team.group.id}.github.io/${project.artifactId}/site/${project.version}/</url>
 		</site>
 	</distributionManagement>
-	<dependencyManagement>
-		<dependencies>
-		</dependencies>
-	</dependencyManagement>
-	<dependencies>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>joda-time</groupId>
-			<artifactId>joda-time</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.codehaus.plexus</groupId>
-			<artifactId>plexus-utils</artifactId>
-		</dependency>
-	</dependencies>
-	<build>
-		<plugins>
-		</plugins>
-	</build>
+    
+    <dependencies>          
+            <dependency>
+                <groupId>org.apache.karaf</groupId>
+                <artifactId>karaf</artifactId>
+                <version>3.0.4</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- <dependency>
+                <groupId>javax.ws.rs</groupId>
+                <artifactId>javax.ws.rs-api</artifactId>
+                <version>2.0</version>
+            </dependency> -->
+            <dependency>
+	            <groupId>org.apache.servicemix.specs</groupId>
+	            <artifactId>org.apache.servicemix.specs.jsr339-api-2.0</artifactId>
+	            <version>2.5.0</version>
+        	</dependency>
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>2.4</version>
+            </dependency>
+             <dependency>
+                <groupId>commons-codec</groupId>
+                <artifactId>commons-codec</artifactId>
+                <version>1.10</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.xml.bind</groupId>
+                <artifactId>jaxb-api</artifactId>
+                <version>2.2.12</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.cxf</groupId>
+                <artifactId>cxf-core</artifactId>
+                <version>3.0.4</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-httpclient</groupId>
+                <artifactId>commons-httpclient</artifactId>
+                <version>3.1</version>
+            </dependency>
+            <dependency>
+			    <groupId>com.fasterxml.jackson.core</groupId>
+			    <artifactId>jackson-databind</artifactId>
+			    <version>2.2.3</version>
+		    </dependency>
+		    <dependency>
+			    <groupId>com.fasterxml.jackson.core</groupId>
+			    <artifactId>jackson-core</artifactId>
+			    <version>2.2.3</version>
+			</dependency>
+			<dependency>
+			    <groupId>com.fasterxml.jackson.core</groupId>
+			    <artifactId>jackson-annotations</artifactId>
+			    <version>2.2.3</version>
+			</dependency>
+			<dependency>
+			    <groupId>org.slf4j</groupId>
+			    <artifactId>slf4j-api</artifactId>
+			    <version>${slf4j.version}</version>
+			</dependency>
+			<dependency>
+			    <groupId>org.slf4j</groupId>
+			    <artifactId>slf4j-log4j12</artifactId>
+			    <version>${slf4j.version}</version>
+			</dependency>
+			
+    </dependencies>
+
+    <build>
+        <plugins>
+        	
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <version>2.5.4</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <instructions>
+                        <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+                        <Bundle-Description>${project.description}</Bundle-Description>
+                        <Import-Package>
+                            javax.wsdl,
+                            javax.xml.bind,
+                            javax.xml.bind.annotation,                            
+                            org.apache.commons.httpclient;version="[3.1,4.0)",
+                            org.apache.commons.httpclient.methods;version="[3.1,4.0]",
+                            org.osgi.service.blueprint,                            
+                            com.fasterxml.jackson.annotation, com.fasterxml.jackson.core, com.fasterxml.jackson.databind, com.fasterxml.jackson.jaxrs.json,
+                            javax.crypto,javax.crypto.spec,
+                            org.apache.commons.codec;version="[1.10,2.0)",                            
+                            javax.ws.rs,
+                            javax.ws.rs.core,javax.ws.rs.ext,
+                            org.slf4j
+                        </Import-Package>
+                        <Export-Package>
+                            com.deliver8R.uiddatasink.api;version="1.0"
+                        </Export-Package>
+                        <Embed-Dependency>artifactId=commons-io</Embed-Dependency>                       
+                    </instructions>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>com.deliver8R.datasink.client.Client</mainClass>
+                    <includePluginDependencies>false</includePluginDependencies>
+                </configuration>
+            </plugin>
+            <plugin>
+                    <groupId>org.apache.cxf</groupId>
+                    <artifactId>cxf-codegen-plugin</artifactId>
+                    <version>3.0.4</version>
+                    <dependencies>
+                        <dependency>
+                            <groupId>xerces</groupId>
+                            <artifactId>xercesImpl</artifactId>
+                            <version>2.11.0</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+        </plugins>
+    </build>
+
 </project>
