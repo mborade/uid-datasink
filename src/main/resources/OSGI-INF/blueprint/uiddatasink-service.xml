@@ -17,7 +17,7 @@ http://cxf.apache.org/blueprint/jaxrs http://cxf.apache.org/schemas/blueprint/ja
     </jaxrs:server>
     		
     <bean id="dataSinkServiceImpl" class="com.deliver8R.uiddatasink.impl.DataSinkServiceImpl" >
-		<argument value="/Users/tkmablj/uid-data"/>
+		<argument value=""/>
 	</bean>
 	
     <bean id="dataSinkSvc" class="com.deliver8R.uiddatasink.api.UIDDataSinkServiceImpl">
