@@ -2,12 +2,17 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
+    <parent>
+-		<groupId>com.deliver8r</groupId>
+-		<artifactId>deliver8r-parent</artifactId>
+-		<version>0.0.7</version>
+-	</parent>
 	<groupId>com.deliver8R</groupId>
-    <artifactId>uiddatasink-service</artifactId>
+    <artifactId>uid-datasink</artifactId>
     <packaging>bundle</packaging>
-    <version>0.1</version>
-    <name>UID Datasink web service</name>
-    <description>UID Datasink web service</description>
+    <version>0.0.7</version>
+    <name>UID Datasink service</name>
+    <description>A service for persisting data in a local file system associated with an identifier</description>
 	
 	 <properties>
         <cxf.version>3.0.4</cxf.version>

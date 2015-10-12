@@ -16,13 +16,10 @@ public class UIDDataSinkServiceImpl implements UIDDataSinkService {
 
 	@Override
 	public Response addIdentifierData(IdentifierData uidData) throws DataSinkException, AuthorizationException, IdAlreadyExistsException {
-
-			
+		
 			String uid = dataSinkService.addIdentifierData(uidData);
 			
-			return Response.ok().entity(uid).build();
-
-		
+			return Response.ok().entity(uid).build();		
 	}
 
 	@Override
