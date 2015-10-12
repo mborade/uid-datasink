@@ -2,48 +2,47 @@ package com.deliver8R.uiddatasink.api;
 
 import javax.ws.rs.core.Response;
 
+import com.deliver8R.uiddatasink.AuthorizationException;
 import com.deliver8R.uiddatasink.DataSinkException;
 import com.deliver8R.uiddatasink.DataSinkService;
-import com.deliver8R.uiddatasink.model.UIDData;
+import com.deliver8R.uiddatasink.IdAlreadyExistsException;
+import com.deliver8R.uiddatasink.IdNotFoundException;
+import com.deliver8R.uiddatasink.model.IdentifierData;
 
 
 public class UIDDataSinkServiceImpl implements UIDDataSinkService {
 	
 	DataSinkService dataSinkService;
 
-	public Response addUIDData(UIDData uidData) {
-		
-		try {
+	@Override
+	public Response addIdentifierData(IdentifierData uidData) throws DataSinkException, AuthorizationException, IdAlreadyExistsException {
+
 			
-			String uid = dataSinkService.addUIDData(uidData);
+			String uid = dataSinkService.addIdentifierData(uidData);
 			
 			return Response.ok().entity(uid).build();
-			
-		} 
-		catch (DataSinkException e) 
-		{
-			return Response.serverError().entity(e.getMessage()).build();
-		} 
+
 		
 	}
 
-	public UIDData getUIDData(String id) throws DataSinkException {
+	@Override
+	public IdentifierData getIdentifierData(String id) throws DataSinkException, IdNotFoundException, AuthorizationException {
 		
-		return dataSinkService.getUIDData(id);	
+		return dataSinkService.getIdentifierData(id);	
 	}
 
-	
-	public Response updateUIDData(UIDData uidData) throws DataSinkException {
+	@Override
+	public Response updateIdentifierData(String id, IdentifierData uidData) throws DataSinkException, IdNotFoundException, AuthorizationException {
 		
-		dataSinkService.updateUIDData(uidData);
+		dataSinkService.updateIdentifierData(id, uidData);
 		return Response.ok().build();
 	
 	}
 
-	
-	public Response deleteUIDData(String id) {
-		// TODO Auto-generated method stub
-		return null;
+	@Override
+	public Response deleteIdentifierData(String id) throws DataSinkException, IdNotFoundException, AuthorizationException {
+		dataSinkService.deleteIdentifierData(id);
+		return Response.ok().build();
 	}
 
 

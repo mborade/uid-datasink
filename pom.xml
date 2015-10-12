@@ -5,7 +5,7 @@
 	<groupId>com.deliver8R</groupId>
     <artifactId>uiddatasink-service</artifactId>
     <packaging>bundle</packaging>
-    <version>0.0.1</version>
+    <version>0.1</version>
     <name>UID Datasink web service</name>
     <description>UID Datasink web service</description>
 	
@@ -124,7 +124,7 @@
                             org.apache.commons.httpclient;version="[3.1,4.0)",
                             org.apache.commons.httpclient.methods;version="[3.1,4.0]",
                             org.osgi.service.blueprint,                            
-                            com.fasterxml.jackson.annotation, com.fasterxml.jackson.core, com.fasterxml.jackson.databind, com.fasterxml.jackson.jaxrs.json,
+                            com.fasterxml.jackson.annotation, com.fasterxml.jackson.core, com.fasterxml.jackson.databind,
                             javax.crypto,javax.crypto.spec,
                             org.apache.commons.codec;version="[1.10,2.0)",                            
                             javax.ws.rs,
@@ -132,7 +132,7 @@
                             org.slf4j
                         </Import-Package>
                         <Export-Package>
-                            com.deliver8R.uiddatasink.api;version="1.0"
+                            com.deliver8R.uiddatasink.api;version="0.1"
                         </Export-Package>
                         <Embed-Dependency>artifactId=commons-io</Embed-Dependency>                       
                     </instructions>
@@ -158,6 +158,14 @@
                         </dependency>
                     </dependencies>
                 </plugin>
+                <plugin>
+			        <artifactId>maven-compiler-plugin</artifactId>
+			        <version>3.2</version>
+			        <configuration>
+			            <source>1.8</source>
+			            <target>1.8</target>
+			        </configuration>
+    			</plugin>
         </plugins>
     </build>
 

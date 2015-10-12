@@ -1,15 +1,15 @@
 package com.deliver8R.uiddatasink;
 
-import com.deliver8R.uiddatasink.model.UIDData;
+import com.deliver8R.uiddatasink.model.IdentifierData;
 
 public interface DataSinkService {
 			
-	    public UIDData getUIDData(String id) throws DataSinkException; 
+	    public IdentifierData getIdentifierData(String uid) throws DataSinkException, IdNotFoundException, AuthorizationException; 
 	    	 
-	    public void updateUIDData(UIDData uidData) throws DataSinkException;
+	    public void updateIdentifierData(String uid, IdentifierData idData) throws DataSinkException, IdNotFoundException, AuthorizationException;
 	    
-	    public String addUIDData(UIDData uidData) throws DataSinkException; 
+	    public String addIdentifierData(IdentifierData idData) throws DataSinkException, AuthorizationException, IdAlreadyExistsException; 
 	    
-	    public void deleteUIDData(String id) throws DataSinkException;
+	    public void deleteIdentifierData(String uid) throws DataSinkException, IdNotFoundException, AuthorizationException;
 
 }

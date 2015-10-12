@@ -12,12 +12,15 @@ http://cxf.apache.org/blueprint/jaxrs http://cxf.apache.org/schemas/blueprint/ja
             <ref component-id="dataSinkSvc"/>
         </jaxrs:serviceBeans>
         <jaxrs:providers>
-        	<bean class="com.deliver8R.uiddatasink.api.DataSinkExceptionHandler"/>
+        	<bean class="com.deliver8R.uiddatasink.handler.DataSinkExceptionHandler"/>
+        	<bean class="com.deliver8R.uiddatasink.handler.IdNotFoundExceptionHandler"/>
+        	<bean class="com.deliver8R.uiddatasink.handler.IdAlreadyExistsExceptionHandler"/>
+        	<bean class="com.deliver8R.uiddatasink.handler.AuthorizationExceptionHandler"/>
         </jaxrs:providers>
     </jaxrs:server>
     		
     <bean id="dataSinkServiceImpl" class="com.deliver8R.uiddatasink.impl.DataSinkServiceImpl" >
-		<argument value=""/>
+		<argument value="."/>
 	</bean>
 	
     <bean id="dataSinkSvc" class="com.deliver8R.uiddatasink.api.UIDDataSinkServiceImpl">

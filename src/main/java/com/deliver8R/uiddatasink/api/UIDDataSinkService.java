@@ -11,8 +11,11 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import com.deliver8R.uiddatasink.AuthorizationException;
 import com.deliver8R.uiddatasink.DataSinkException;
-import com.deliver8R.uiddatasink.model.UIDData;
+import com.deliver8R.uiddatasink.IdAlreadyExistsException;
+import com.deliver8R.uiddatasink.IdNotFoundException;
+import com.deliver8R.uiddatasink.model.IdentifierData;
 
 
 @Path("/datasink")
@@ -21,22 +24,22 @@ public interface UIDDataSinkService {
 	@POST
     @Path("")
     @Consumes(MediaType.APPLICATION_JSON)
-	public Response addUIDData(UIDData uidData) throws DataSinkException; 
+	public Response addIdentifierData(IdentifierData uidData) throws DataSinkException, AuthorizationException, IdAlreadyExistsException; 
 	
 	
 	@GET
     @Path("/id/{id}/")
     @Produces(MediaType.APPLICATION_JSON)
-	public UIDData getUIDData(@PathParam("id") String id) throws DataSinkException;
+	public IdentifierData getIdentifierData(@PathParam("id") String id) throws DataSinkException, IdNotFoundException, AuthorizationException;
 	
 	@PUT
-    @Path("")
+    @Path("/id/{id}")
     @Consumes (MediaType.APPLICATION_JSON)
-	public Response updateUIDData(UIDData uidData) throws DataSinkException;
+	public Response updateIdentifierData(@PathParam("id") String id, IdentifierData uidData) throws DataSinkException, IdNotFoundException, AuthorizationException;
 	
 	@DELETE
 	@Path("/id/{id}")
 	@Produces (MediaType.APPLICATION_JSON)
-	public Response deleteUIDData(@PathParam("id") String id) throws DataSinkException;
+	public Response deleteIdentifierData(@PathParam("id") String id) throws DataSinkException, AuthorizationException, IdNotFoundException;
 	
 }
