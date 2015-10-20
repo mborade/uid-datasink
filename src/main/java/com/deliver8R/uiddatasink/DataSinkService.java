@@ -1,5 +1,9 @@
 package com.deliver8R.uiddatasink;
 
+import com.deliver8R.uiddatasink.exception.AuthorizationException;
+import com.deliver8R.uiddatasink.exception.DataSinkException;
+import com.deliver8R.uiddatasink.exception.IdAlreadyExistsException;
+import com.deliver8R.uiddatasink.exception.IdNotFoundException;
 import com.deliver8R.uiddatasink.model.IdentifierData;
 
 public interface DataSinkService {

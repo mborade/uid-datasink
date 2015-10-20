@@ -2,11 +2,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <parent>
 -		<groupId>com.deliver8r</groupId>
 -		<artifactId>deliver8r-parent</artifactId>
 -		<version>0.0.7</version>
--	</parent>
 	<groupId>com.deliver8R</groupId>
     <artifactId>uid-datasink</artifactId>
     <packaging>bundle</packaging>
@@ -131,7 +129,7 @@
                             org.osgi.service.blueprint,                            
                             com.fasterxml.jackson.annotation, com.fasterxml.jackson.core, com.fasterxml.jackson.databind,
                             javax.crypto,javax.crypto.spec,
-                            org.apache.commons.codec;version="[1.10,2.0)",                            
+                            org.apache.commons.codec.digest;version="[1.10,2.0)",                            
                             javax.ws.rs,
                             javax.ws.rs.core,javax.ws.rs.ext,
                             org.slf4j

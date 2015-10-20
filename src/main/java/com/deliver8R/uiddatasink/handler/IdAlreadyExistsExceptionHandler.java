@@ -6,7 +6,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
 
-import com.deliver8R.uiddatasink.IdAlreadyExistsException;
+import com.deliver8R.uiddatasink.exception.IdAlreadyExistsException;
 
 @Provider
 @Produces(MediaType.APPLICATION_JSON)

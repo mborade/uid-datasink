@@ -6,7 +6,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
 
-import com.deliver8R.uiddatasink.IdNotFoundException;
+import com.deliver8R.uiddatasink.exception.IdNotFoundException;
 
 @Provider
 @Produces(MediaType.APPLICATION_JSON)

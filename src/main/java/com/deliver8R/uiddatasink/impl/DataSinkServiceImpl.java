@@ -24,11 +24,11 @@ import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.deliver8R.uiddatasink.AuthorizationException;
-import com.deliver8R.uiddatasink.DataSinkException;
 import com.deliver8R.uiddatasink.DataSinkService;
-import com.deliver8R.uiddatasink.IdAlreadyExistsException;
-import com.deliver8R.uiddatasink.IdNotFoundException;
+import com.deliver8R.uiddatasink.exception.AuthorizationException;
+import com.deliver8R.uiddatasink.exception.DataSinkException;
+import com.deliver8R.uiddatasink.exception.IdAlreadyExistsException;
+import com.deliver8R.uiddatasink.exception.IdNotFoundException;
 import com.deliver8R.uiddatasink.model.IdentifierData;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -42,8 +42,9 @@ public class DataSinkServiceImpl implements DataSinkService {
 	private static final Logger logger = LoggerFactory.getLogger(DataSinkServiceImpl.class);
 	private SecretKey secretKey;
 	private Cipher cipher;
-	private String rootPath = "";
+	private String rootPath = ".";
 	private String password = "secretKey";
+	private String salt = "salt1234";
 	private PBEParameterSpec pbeParameterSpec;
 	
 		public DataSinkServiceImpl(String rootPath) throws NoSuchAlgorithmException, NoSuchPaddingException, IOException, InvalidKeySpecException, InvalidKeyException, InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException
@@ -51,12 +52,8 @@ public class DataSinkServiceImpl implements DataSinkService {
 			this.rootPath = rootPath;
 			PBEKeySpec pbeKeySpec = new PBEKeySpec(password.toCharArray());
 			SecretKeyFactory secretKeyFactory = SecretKeyFactory.getInstance(ENCRYPTION_ALGORITHM);
-			secretKey = secretKeyFactory.generateSecret(pbeKeySpec);
-
-			byte[] salt = FileUtils.readFileToByteArray(new File(rootPath+"/salt"));
-			
-			pbeParameterSpec = new PBEParameterSpec(salt, 100);
-
+			secretKey = secretKeyFactory.generateSecret(pbeKeySpec);			
+			pbeParameterSpec = new PBEParameterSpec(salt.getBytes(), 100);
 			cipher = Cipher.getInstance(ENCRYPTION_ALGORITHM);
 		}
 		    	 
@@ -282,7 +279,7 @@ public class DataSinkServiceImpl implements DataSinkService {
 
 	    public static void main(String[] args) throws NoSuchAlgorithmException, NoSuchPaddingException, DataSinkException, IOException, InvalidKeyException, InvalidKeySpecException, InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException, AuthorizationException, IdNotFoundException, IdAlreadyExistsException
 	    {
-	    	DataSinkService dataSinkService = new DataSinkServiceImpl("/Users/tkmablj/uid-data");
+	    	DataSinkService dataSinkService = new DataSinkServiceImpl(".");
 	    	
 	    	IdentifierData uidData = new IdentifierData();
 	   
@@ -291,15 +288,15 @@ public class DataSinkServiceImpl implements DataSinkService {
 	    	dataMap.put("mname", "E");
 	    	dataMap.put("lname", "Doe");
 	    	uidData.setAdditionalData(dataMap);
-	    	uidData.setIdentifier("ident6");
+	    	uidData.setIdentifier("ident4");
 	    	
-	    	dataSinkService.updateIdentifierData("0b9bfa4c2a3ba37531fc52d5ccf3496d4f6c4e590", uidData);
+//	    	dataSinkService.updateIdentifierData("0b9bfa4c2a3ba37531fc52d5ccf3496d4f6c4e590", uidData);
 	    	
-//	    	dataSinkService.addIdentifierData(uidData);
-//	    	IdentifierData result = dataSinkService.getIdentifierData(uid);	    	
-//	    		
-//	    	System.out.println(result.getIdentifier());
-//	    	System.out.println(result.getAdditionalData());
+	    	String uid = dataSinkService.addIdentifierData(uidData);
+	    	IdentifierData result = dataSinkService.getIdentifierData(uid);	    	
+	    		
+	    	System.out.println(result.getIdentifier());
+	    	System.out.println(result.getAdditionalData());
 
 	    }
 }

@@ -6,7 +6,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
 
-import com.deliver8R.uiddatasink.AuthorizationException;
+import com.deliver8R.uiddatasink.exception.AuthorizationException;
 
 @Provider
 @Produces(MediaType.APPLICATION_JSON)

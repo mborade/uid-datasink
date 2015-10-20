@@ -11,10 +11,10 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import com.deliver8R.uiddatasink.AuthorizationException;
-import com.deliver8R.uiddatasink.DataSinkException;
-import com.deliver8R.uiddatasink.IdAlreadyExistsException;
-import com.deliver8R.uiddatasink.IdNotFoundException;
+import com.deliver8R.uiddatasink.exception.AuthorizationException;
+import com.deliver8R.uiddatasink.exception.DataSinkException;
+import com.deliver8R.uiddatasink.exception.IdAlreadyExistsException;
+import com.deliver8R.uiddatasink.exception.IdNotFoundException;
 import com.deliver8R.uiddatasink.model.IdentifierData;
 
 

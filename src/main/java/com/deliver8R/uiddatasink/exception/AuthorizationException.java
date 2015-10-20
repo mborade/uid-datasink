@@ -1,4 +1,4 @@
-package com.deliver8R.uiddatasink;
+package com.deliver8R.uiddatasink.exception;
 
 public class AuthorizationException extends Exception{
 
